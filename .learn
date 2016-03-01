@@ -1,6 +1,8 @@
 tags:
-  - a tag
+  - Analysis of algorithms
+  - Doubly-linked list
+  - Performance profiling
 languages:
-  - a language
+  - Java
 resources: 
-  - 0
+  - 1
