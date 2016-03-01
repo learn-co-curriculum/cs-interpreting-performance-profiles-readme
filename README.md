@@ -1,4 +1,4 @@
-# cs-analyzing-our-linkedlist-readme
+# cs-interpreting-performance-profiles-readme
 
 
 ## Overview
@@ -57,14 +57,14 @@ Here's the graph of runtime versus problem size:
     
 ![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure02.small.png?token=ABy37dZ6JlrLQFQEl_vvD7xiRCyUYvTbks5W3vhZwA%3D%3D)
     
-Remember that a straight line on this graph does **not** mean that the algorithm is linear.  Rather, if the runtime is proportional to `n`<sup>k</sup> for any exponent, `k`, we expect to see a straight line with slope `k`.  In this case, we expect the total time for `n` adds to be proportional to `n`<sup>2</sup>.  And in fact the estimated slope is 1.992, which is so close we would be afraid to fake data this good.
+Remember that a straight line on this graph does **not** mean that the algorithm is linear.  Rather, if the runtime is proportional to `n`<sup>k</sup> for any exponent, `k`, we expect to see a straight line with slope `k`.  In this case, we expect the total time for `n` adds to be proportional to `n`<sup>2</sup>, so we expect a straight line with slope 2.   In fact, the estimated slope is 1.992, which is so close we would be afraid to fake data this good.
     
 
 ## Profiling `LinkedList` methods
     
-The next exercise asked you to profile the peformance of adding new elements at the beginning of a `LinkedList`.  Based on analysis, we expect each `add` to take constant time, because in a linked list, we don't have to shift the existing elements; we can just add a new node at the beginning.  So we expect the total time for `n` adds to be linear.
+The next exercise asked you to profile the peformance of adding new elements at the beginning of a `LinkedList`.  Based on our analysis, we expect each `add` to take constant time, because in a linked list, we don't have to shift the existing elements; we can just add a new node at the beginning.  So we expect the total time for `n` adds to be linear.
 
-Here's the code we used:
+Here's our solution:
 
 ```java
 	public static void profileLinkedListAddBeginning() {
@@ -103,6 +103,8 @@ And here's the graph:
 ![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure03.small.png?token=ABy37atg5dv7WVNWuLNMZ2VpdEVTNActks5W3vhowA%3D%3D)
 
 It's not a very straight line, and the slope is not exactly 1; the slope of the least squares fit is 1.23.  But these results indicate that the total time for `n` adds is at least approximately O(`n`), so each add is constant time.
+
+## Adding to the end of a `LinkedList`
 
 Adding elements at the beginning is one of the operations where we expect `LinkedList` to be faster than `ArrayList`.  But for adding elements at the end, we expect `LinkedList` to be slower.  In our implementation, we have to traverse the entire list to add an element to the end, which is linear.  So we expect the total time for `n` adds to be quadratic.
 
@@ -148,7 +150,7 @@ And here's the graph:
 ![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure04.small.png?token=ABy37aoCVnlcSwnMdLzVcePhw00teONJks5W3vhrwA%3D%3D)
 
 
-Again, the measurements are noisy and the line is not perfectly straight, but the estimated slope is 1.24, which is almost exactly the same as we got when we were adding elements at the beginning, and not very close to 2, which is what we expected based on our analysis.  In fact, it is closer to 1, which suggests that adding elements at the end is at least approximately linear.  What's going on?
+Again, the measurements are noisy and the line is not perfectly straight, but the estimated slope is 1.24, which is almost exactly what we got adding elements at the beginning, and not very close to 2, which is what we expected based on our analysis.  In fact, it is closer to 1, which suggests that adding elements at the end is at least approximately linear.  What's going on?
 
 
 ## Doubly-linked list
@@ -174,7 +176,6 @@ So we can start at either end of the list and traverse it in either direction.  
 The following table summarizes the performance we expect from `ArrayList`, `MyLinkedList` (singly-linked), and `LinkedList` (doubly-linked):
 
 |                             | MyArrayList | MyLinkedList | LinkedList |
-|                             |             | (single)     | (double)   |
 |-----------------------------|-----------|------------|---------------|
 | add (at the end)            | **1**     | n          |   **1**       |
 | add (at the beginning)      | n         | **1**      |   **1**       |
@@ -186,9 +187,25 @@ The following table summarizes the performance we expect from `ArrayList`, `MyLi
 | remove (from the beginning) | n         | **1**      |  **1**        |
 | remove (in general)         | n         | n          |  n            |
 
+The doubly-linked implementation is better than `ArrayList` for adding and removing at the beginning, and just as good as `ArrayList` for adding and removing at the end.  So the only advantage of `ArrayList` is for `get` and `set`, which require linear time in a linked list, even if it is doubly-linked. 
 
+If you know that the runtime of your application depends on the time it takes to `get` and `set` elements, an `ArrayList` might be the better choice.  If the runtime depends on adding and removing elements near the beginning or the end, `LinkedList` might be better.
 
+But remember that these recommendations are based on the order of growth for large problems.  There are other factors to consider:
 
+*  If these operations don't take up a substantial fraction of the runtime for your application -- that is, if your applications spends most of its time doing other things -- then your choice of a `List` implementation won't matter very much.
+
+*  If the lists you are working with are not very big, you might not get the performance you expect.  For small problems, an quadratic algorithm might be faster than a linear algorithm, or linear might be faster than constant time.  And for small problems, the difference probably doesn't matter.
+
+*  Also, don't forget about space.  So far we have focused on runtime, but different implementations require different amounts of space.  In an `ArrayList`, the elements are stored side-by-side in a single chunk of memory, so there is very little wasted space, and computer hardware is often faster with contiguous chunks.  In a linked list, each element requires a node with one or two links.  The links take up space (sometimes more than the cargo!), and with nodes scattered around in memory, the hardware might be less efficient.
+ 
+In summary, analysis of algorithms provides some guidance for choosing data structures, but only if
+
+1.  The runtime of your application is important,
+2.  The runtime of your application depends on your choice of data structure, and
+3.  The problem size is large enough that the order of growth actually predicts which data structure is better.
+
+You could have a long career as a software engineer without ever finding yourself in this situation.
 
 
 ## Resources
