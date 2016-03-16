@@ -207,7 +207,7 @@ In summary, analysis of algorithms provides some guidance for choosing data stru
 
 You could have a long career as a software engineer without ever finding yourself in this situation.
 
-## Post Script
+## Postscript
 
 **CONGRATS!!!** You've reached the end of Unit 1. Stay tuned for Unit 2, which will be available on April 15!
 
