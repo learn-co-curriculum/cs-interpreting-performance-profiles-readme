@@ -100,7 +100,7 @@ Again, we only had a make a few small changes, replacing `ArrayList` with `Linke
 
 And here's the graph:
 
-![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure03.small.png?token=ABy37atg5dv7WVNWuLNMZ2VpdEVTNActks5W3vhowA%3D%3D)
+![alt tag](https://curriculum-content.s3.amazonaws.com/javacs/interpreting_results_figure03.small.png)
 
 It's not a very straight line, and the slope is not exactly 1; the slope of the least squares fit is 1.23.  But these results indicate that the total time for `n` adds is at least approximately O(`n`), so each add is constant time.
 
@@ -147,7 +147,7 @@ Here are the results:
 
 And here's the graph:
 
-![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure04.small.png?token=ABy37aoCVnlcSwnMdLzVcePhw00teONJks5W3vhrwA%3D%3D)
+![alt tag](https://curriculum-content.s3.amazonaws.com/javacs/interpreting_results_figure04.small.png)
 
 
 Again, the measurements are noisy and the line is not perfectly straight, but the estimated slope is 1.24, which is almost exactly what we got adding elements at the beginning, and not very close to 2, which is what we expected based on our analysis.  In fact, it is closer to 1, which suggests that adding elements at the end is at least approximately linear.  What's going on?
