@@ -52,16 +52,16 @@ Here are the timing results (problem size on the left, run time in milliseconds 
     32000, 604
     64000, 2518
     128000, 11555
-    
+
 Here's the graph of runtime versus problem size:
-    
-![alt tag](https://raw.githubusercontent.com/learn-co-curriculum/cs-interpreting-performance-profiles-readme/wip-master/figure02.small.png?token=ABy37dZ6JlrLQFQEl_vvD7xiRCyUYvTbks5W3vhZwA%3D%3D)
-    
+
+![alt tag](https://curriculum-content.s3.amazonaws.com/javacs/interpreting_results_figure02.small.png)
+
 Remember that a straight line on this graph does **not** mean that the algorithm is linear.  Rather, if the runtime is proportional to `n`<sup>k</sup> for any exponent, `k`, we expect to see a straight line with slope `k`.  In this case, we expect the total time for `n` adds to be proportional to `n`<sup>2</sup>, so we expect a straight line with slope 2.   In fact, the estimated slope is 1.992, which is so close we would be afraid to fake data this good.
-    
+
 
 ## Profiling `LinkedList` methods
-    
+
 The next exercise asked you to profile the peformance of adding new elements at the beginning of a `LinkedList`.  Based on our analysis, we expect each `add` to take constant time, because in a linked list, we don't have to shift the existing elements; we can just add a new node at the beginning.  So we expect the total time for `n` adds to be linear.
 
 Here's our solution:
@@ -187,7 +187,7 @@ The following table summarizes the performance we expect from `ArrayList`, `MyLi
 | remove (from the beginning) | n         | **1**      |  **1**        |
 | remove (in general)         | n         | n          |  n            |
 
-The doubly-linked implementation is better than `ArrayList` for adding and removing at the beginning, and just as good as `ArrayList` for adding and removing at the end.  So the only advantage of `ArrayList` is for `get` and `set`, which require linear time in a linked list, even if it is doubly-linked. 
+The doubly-linked implementation is better than `ArrayList` for adding and removing at the beginning, and just as good as `ArrayList` for adding and removing at the end.  So the only advantage of `ArrayList` is for `get` and `set`, which require linear time in a linked list, even if it is doubly-linked.
 
 If you know that the runtime of your application depends on the time it takes to `get` and `set` elements, an `ArrayList` might be the better choice.  If the runtime depends on adding and removing elements near the beginning or the end, `LinkedList` might be better.
 
@@ -198,7 +198,7 @@ But remember that these recommendations are based on the order of growth for lar
 *  If the lists you are working with are not very big, you might not get the performance you expect.  For small problems, an quadratic algorithm might be faster than a linear algorithm, or linear might be faster than constant time.  And for small problems, the difference probably doesn't matter.
 
 *  Also, don't forget about space.  So far we have focused on runtime, but different implementations require different amounts of space.  In an `ArrayList`, the elements are stored side-by-side in a single chunk of memory, so there is very little wasted space, and computer hardware is often faster with contiguous chunks.  In a linked list, each element requires a node with one or two links.  The links take up space (sometimes more than the cargo!), and with nodes scattered around in memory, the hardware might be less efficient.
- 
+
 In summary, analysis of algorithms provides some guidance for choosing data structures, but only if
 
 1.  The runtime of your application is important,
@@ -207,6 +207,9 @@ In summary, analysis of algorithms provides some guidance for choosing data stru
 
 You could have a long career as a software engineer without ever finding yourself in this situation.
 
+## Post Script
+
+**CONGRATS!!!** You've reached the end of Unit 1. Stay tuned for Unit 2, which will be available on April 15!
 
 ## Resources
 
