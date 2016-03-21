@@ -210,7 +210,10 @@ You could have a long career as a software engineer without ever finding yoursel
 ## Postscript
 
 **CONGRATS!!!** You've reached the end of Unit 1. Stay tuned for Unit 2, which will be available on April 15!
+We'd love to hear your thoughts about this unit so we could continue to improve things for the future. Please take a moment to fill out a short feedback survey [HERE](https://docs.google.com/forms/d/1M4wOTEjQc8MmoNM6tx1U9A1xJpYqR65Ry1oij6QG5PI/viewform).
 
 ## Resources
 
 [Doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) at Wikipedia.
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/cs-interpreting-performance-profiles-readme'>Interpreting Performance Profiles</a> on Learn.co and start learning to code for free.</p>
